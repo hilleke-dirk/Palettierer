@@ -1,5 +1,15 @@
+'Ausgänge werden mit OP_ benannt und Eingänge mit IP_
+'FS sind die 4 Rollenbahnen der Europalleten, der Ausgang startet den Motor, die Eingang ist ein Kontakt, wenn eine Palette auf der Rollenbahn steht
+'Beim Palettenmagazin gibt es die Funktionen Heben und Senken, die nicht zusammen aktiviert werden dürfen, und den Greifer über Pneumatikzylinder
+'Der Controllersimulator hat als EIngänge leider nicht die späteren Werte des ZIO, deswegen für die Test abweichende Eingänge
+
+dim Simul 'Wenn 1, dann andere Eingänge,  wird später alles auskommentiert
+Simul = 1
+
+if (simul) then
+
 dim OP_FS(4)
-OP_FS(0, 41,42,43,44)   'OP_FS(0, 41,42,43,44)
+OP_FS(0, 41,42,43,44) 
 dim IP_FS(4)
 IP_FS(0, 8,9,10,11)    '******  IP_FS(0, 41,42,43,44)
 dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Timeout
@@ -19,6 +29,30 @@ IP_MagOffen = 37
 IP_MagNopush = 18  '****** IP_MagNopush = 47
 OP_MagPush = 47
 
+else 'echte Projektwerte 
+
+dim OP_FS(4)
+OP_FS(0, 41,42,43,44)
+dim IP_FS(4)
+IP_FS(0, 41,42,43,44)
+dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Timeout
+Error_FS(0, 0,0,0,0)
+
+dim IP_PalOK  'Eingang zum Palettenstreckenentstören
+IP_PalOK = 33
+
+dim IP_MagOben, IP_MagUnten, OP_MagHeben, OP_MagSenken, IP_MagGreifen, OP_MagGreifen, IP_MagOffen, IP_MagNopush, OP_MagPush
+IP_MagOben = 34 
+IP_MagUnten =  35
+OP_MagHeben = 35
+OP_MagSenken = 36
+OP_MagGreifen = 37
+IP_MagGreifen = 36 
+IP_MagOffen = 37
+IP_MagNopush = 47
+OP_MagPush = 47
+end if
+
 dim IP_FS_MASKE, FS_MAX_ZEIT
 IP_FS_MASKE = 0   'mit 1 Eingänge umkehren
 FS_MAX_ZEIT = 30000   'max Zeit fördern der Palette in Millisekunden
@@ -32,6 +66,8 @@ dim YStapel(100)
 dim ZStapel(100)
 dim TStapel(100)
 
+
+'Testspielereien
 'AVSE0,92
 'AVSE1,1
 'AXSE0,270
@@ -55,9 +91,9 @@ TStapel(23,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1)
 TStapel(46,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0)
 TStapel(69,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 
-
 PRINT XStapel(46)
 PRINT XStapel(22)
+
 
 ERRSWITCH = 3
 base (0) '0 select shaft
@@ -73,17 +109,17 @@ MagInit()
 
 while 1 'cyclic motion
 	
-if IN(IP_PalOK) = on then  'Palettenentstörtaste gedrückt
-     for i = 0 to 3 step 1
-	      if Error_FS(i) = 2 then
-			Error_FS(i) = 0
-		  end if
-	 next
-	 PalAbTime = TIME  'sofortige Freigabe
-end if
+	if IN(IP_PalOK) = on then  'Palettenentstörtaste gedrückt
+		for i = 0 to 3 step 1
+			if Error_FS(i) = 2 then
+				Error_FS(i) = 0
+			end if
+		next
+		PalAbTime = TIME  'sofortige Freigabe
+	end if
 
-foerdern(1)
-foerdern(2)
+	foerdern(1)
+	foerdern(2)
 
 wend
 
