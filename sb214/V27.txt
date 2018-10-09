@@ -1,0 +1,694 @@
+
+P
+1,999D
+I
+V17=0
+V18=0
+V19=0
+V20=0
+V21=0
+V22=0
+V23=0
+REM I4 für Erkennung neue Lage
+SPR0:
+CALL GRUND
+CALL REFERENZ
+CALL GRPAL
+CALL GRMAG
+CALL PZUF
+REM Lampe AUS eingeschaltet
+let HI=2
+REM warte auf EIN Taste
+till IN2
+I3=5
+REM --- Hautprogramm
+MAIN:
+V14=6
+IF V25>0 do
+I0=1
+I3=5
+I9=0
+CALL PALVOR
+SPR1:
+let LO=2
+let HI=1
+let XMO=1
+let YMO=1
+let ZMO=1
+let TMO=1
+CALL LOWS
+If I3>4 do
+  I3=0
+  CALL NEUTREF
+end
+CALL AUFNAHME
+CALL NEUPOS
+CALL LOWS
+CALL NULLPOS
+till ^IN10
+CALL GRMAG
+CALL ANFAHREN
+REM *** Naechste Position setzten
+CALL ABLEGEN
+CALL HIGHS
+CALL NULLPOS
+REM WEGFAHREN
+I0=I0+1
+I3=I3+1
+IF I0 <= V0  goto SPR1
+I0=1
+CALL PALAUS
+let LO=1
+let HI=2
+CALL PZUF
+V25=V25-1
+goto MAIN
+end
+STOP
+STOER:
+  V17=V14
+  LET HI=3
+  LSTOER:
+  If IN1 do
+    let LO=3
+    let HI=1
+    let OP=0
+    GOTO SPR0
+  end
+  If IN2 do
+    let LO=3
+    let HI=1
+    ret 
+  end
+  GOTO LSTOER
+LOWS:
+V14=8
+I5=I0+99
+V27=TZ(I5)
+If V27=1 do
+let VV=20000
+let VD=20000
+let VA=20000
+end
+If V27=2 do
+let VV=20000
+let VD=20000
+let VA=20000
+end
+If V27=3 do
+let VV=15000
+let VD=15000
+let VA=15000
+end
+If V27=4 do
+let VV=15000
+let VD=15000
+let VA=15000
+end
+If V27=5 do
+let VV=17500
+let VD=17500
+let VA=17500
+end
+If V27=6 do
+let VV=20000
+let VD=20000
+let VA=20000
+end
+let ZLV=40000
+let ZLA=30000
+let ZLD=30000
+let XLA=15000
+let XLV=15000
+let YLA=15000
+let YLD=15000
+let YLV=15000
+let TLV=2000
+let TLA=2000
+ret
+HIGHS:
+V14=14
+I5=I0+99
+V27=TZ(I5)
+If V27=1 do
+let VV=40000
+let VD=23000
+let VA=23000
+end
+If V27=2 do
+let VV=29000
+let VD=20000
+let VA=20000
+end
+If V27=3 do
+let VV=25000
+let VD=20000
+let VA=20000
+end
+If V27=4 do
+let VV=25000
+let VD=20000
+let VA=20000
+end
+If V27=5 do
+let VV=25000
+let VD=20000
+let VA=20000
+end
+If V27=6 do
+let VV=25000
+let VD=20000
+let VA=20000
+end
+let ZLV=40000
+let ZLA=30000
+let ZLD=30000
+let XLA=20000
+let XLV=20000
+let YLA=20000
+let YLD=20000
+let YLV=20000
+let TLV=2000
+let TLA=2000
+ret
+NULLPOS:
+  V23=V23+1
+  V14=11
+  V9=V5+10000
+  If V9>60000 do
+    let ZAP=V9
+  end
+  else do
+    let ZAP=60000
+  end
+  let XAP=15000
+  V9=V4+5000
+  let YAP=V9
+  let TAP=V6
+  exec BXYZT
+  till ^X_MOVE
+  V23=V23-1
+ret
+ABLEGEN:
+  V22=V22+1 
+  V14=13
+  exec SHI8HI7
+  let ZRP=10000
+  exec BZ
+  till ^Z_MOVE
+  till ^IN8
+  till ^IN7
+  V22=V22-1
+ret
+ANFAHREN:
+  V21=V21+1
+  V14=12
+  let XMM=0
+  let XAP=V3
+  let YMM=0
+  let YAP=V4
+  let ZMM=0
+  let ZAP=V5
+  CALL PALVOR
+  exec BXYZ
+  till ^X_MOVE
+  V21=V21-1
+ret
+NEUPOS:
+ V19=V19+1
+ V14=10
+ I0=I0+99
+ V6=TT(I0)
+ If V6=0 do
+  REM T-Achse 
+  V6=0
+  REM X-ACHSE
+  V3=TX(I0)
+  V3=V3*40
+  V9=TX(0)
+  V9=V9*20
+  V3=V3-V9
+  V3=V3+20150
+  REM Y-Achse
+  V4=TY(I0)
+  V9=V4
+  V4=V9*40
+  V8=TY(0)
+  V9=V8*40
+  V8=V4
+  V4=V8+V9
+  V9=V4
+  V4=V9-4000
+ end
+ If V6=1 do
+  REM T-Achse 
+  V6=7386
+  REM X-ACHSE
+  V3=TX(I0)
+  V9=V3
+  V3=V9*40
+  V8=TY(0)
+  V9=V8*40
+  V8=V3
+  V3=V8-V9
+  V9=V3
+  V3=V9+24400
+  REM Y-Achse
+  V4=TY(I0)
+  V9=V4
+  V4=V9*40
+  V9=V4
+  V8=TX(0)
+  V9=V8*20
+  V8=V4
+  V4=V8+V9
+  V9=V4
+  V4=V9+800
+  rem alter offset =+400
+ end
+ rem Z-Achse
+V5=TZ(I0)
+If V5=1 do
+V5=0
+end
+IF V5=2 do
+V5=TZ(0)
+V9=V5*172
+V5=V9
+end
+IF V5=3 do
+V5=TZ(0)
+V9=V5*345
+V5=V9
+end
+IF V5=4 do
+V5=TZ(0)
+V9=V5*517
+V5=V9
+end
+IF V5=5 do
+V5=TZ(0)
+V9=V5*690
+V5=V9
+end
+IF V5=6 do
+V5=TZ(0)
+V9=V5*862
+V5=V9
+end
+rem neue hoehe wegen zylinder + 50
+V5=V9 + 50
+I0=I0-99
+ret
+V19=V19-1
+AUFNAHME:
+V18=V18+1
+I2=I2+1
+V14=9
+let TMM=0
+let XMM=0
+let YMM=0
+V4=TY(0)
+V9=V4
+REM Linker Anschlag+Karton Breite+Sichheit
+V4=V9*40
+V9=V4
+V4=V9+1350
+let XAP=100
+let YAP=V4
+let TAP=0
+REM Ueber Karton Fahren
+exec BXYT
+till ^X_MOVE
+if I2 > 0 & I4<>V27 do
+CALL NEUREF
+I4=V27
+end
+REM Greifer auf Werkstck anheben Falls Vorhanden
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+till ^IN9
+wait 100
+let HI=9
+exec SHI7HI8
+let ZAP=17000
+exec BZ
+till ^Z_MOVE
+REM GREIFER ZU
+let LO=8
+wait 200
+let LO=7
+wait 200
+let ZAP=52500
+exec BZ
+till ^Z_MOVE
+let LO=9
+V18=V18-1
+ret
+PALAUS:
+IF ^IN11 do
+CALL  PALVOR
+end
+IF ^IN11 do
+let HI=3
+end
+IF ^IN11 goto PALAUS
+let LO=3
+CALL FOERD01
+CALL GRMAG
+ret
+PALVOR:
+V14=7
+REM MANGELANZEIGE
+IF IN15 do
+let HI=15
+end
+else do
+let LO=15
+end
+CALL FOERD23
+CALL FOERD12
+ret
+GRUND:
+V14=1
+REM --- Grundwerte setzen
+REM Microstep-Auflösung  xyz 25 T 50
+V28=0
+V25=999
+let HI=14
+let XXT=2
+let YXT=2
+let ZXT=2
+let TXT=2
+let XER=30000
+let YER=30000
+let ZER=30000
+let TER=30000
+let ZLV=5000
+let ZLA=1500
+ret
+REFERENZ:
+REM --- Referenzfahrt 
+V14=2
+I2=0
+CALL ZREF
+till ^Z_MOVE
+CALL TREF
+CALL YREF
+let YRP=15000
+CALL HIGHS
+exec BY
+till ^Y_MOVE
+CALL XREF
+ret
+GRPAL:
+  V14=3
+  loop 10
+    CALL FOERD23
+    CALL FOERD12
+  end
+ret
+GRMAG:
+V20=V20+1
+V14=4
+REM --- Grundstellung Magazin
+REM Fall 1 Magazin oben
+IF IN3 & IN4 DO
+REM Vereinzelner zu BS-platz leer?
+IF ^IN6 & IN10 do
+call PUSH
+end
+REM Magazin absenken
+let HI=5
+CALL WART20S
+till IN4
+let LO=5
+let LO=6
+end
+REM Fall 2 Magazin in Mittelstellung
+IF IN3 & ^IN4 do
+REM Vereinzelner zu BS-platz leer?
+IF IN6 &  IN10 do
+let HI=4
+call WART20S
+till IN3 & IN4
+let LO=4
+call PUSH
+end
+REM Magazin absenken
+let HI=5
+CALL WART20S
+till IN4
+let LO=5
+let LO=6
+end
+REM Fall 3 Magazin unten 
+IF ^IN3 & IN4 do
+let LO=6
+end
+REM Fall 4  Vereinzelner auf und Magazin nicht unten
+If  ^IN6 & IN3 do
+let HI=5
+CALL WART20S
+till ^IN3
+till IN4
+let LO=5
+end
+V20=V20-1
+ret
+PZUF:
+  IF IN10 do
+    V14=5
+    let LO=6
+    TILL IN6 
+    let HI=4
+    CALL WART20S
+    TILL IN3
+    let LO=4
+    let HI=6
+    TILL IN5
+    let HI=4
+    CALL WART20S
+    TILL IN3 & IN4
+    let LO=4
+    call PUSH
+    WAIT 500
+    let HI=5
+    TILL ^IN3
+    TILL IN4
+    let LO=5
+    let LO=6
+  end
+ret
+PUSH:
+  IF IN10 DO
+    let HI=16
+    REM CALL WART20S
+    TILL IN16
+    REM CALL WART20S
+    TILL ^IN10
+    WAIT 500
+    TILL ^IN10
+    WAIT 500
+    TILL ^IN10
+    WAIT 500
+    TILL ^IN10
+    let LO=16
+    REM CALL WART20S
+    TILL ^IN16
+    WAIT 1000
+    TILL ^IN16
+  end
+ret
+WART20S:
+V10=IP
+TIMER2=30000
+SPR11:
+If V10=IP & TIMER2>1000 goto SPR11
+if TIMER2<1001 GOTO STOER
+ret
+FOERDERN:
+CALL FOERD23
+CALL FOERD12
+CALL FOERD01
+ret
+FOERD23:
+REM 3 leer 2 voll
+IF IN13 & ^IN12 do
+let HI=13
+let HI=12
+till ^IN13
+let LO=13
+let LO=12
+end
+ret
+FOERD12:
+REM 2 leer 1 voll
+IF IN12 & ^IN11 do
+let HI=12
+let HI=11
+till ^IN12
+let LO=12
+let LO=11
+end
+ret
+FOERD01:
+REM 1 leer Best voll
+IF IN11 & ^IN10 do
+let HI=11
+let HI=10
+till ^IN11
+let LO=11
+let LO=10
+end
+ret
+NEUTREF:
+REM *** T-Achse auf 0
+let TPL=-10000000
+let TPH=10000000
+let TLV=3000
+let TLA=3000
+let TMM=0
+let TAP=10500
+let TMO=1
+exec BT
+till ^T_MOVE
+CALL TREF
+ret
+AUTO_IN1:
+  let LO=1
+  let HI=2
+  till IN2
+  let LO=2
+  let HI=1
+ret
+NEBEN:
+  V17=0
+  CALL GRUND
+  CALL REFERENZ
+  I0=V24
+  I3=5
+  let HI=2
+  till IN2
+goto SPR1
+NEUREF:
+  CALL HIGHS
+  let XRP=5000
+  exec BX
+  If V27<2 do
+    let ZAP=170000
+  end
+  If V27>1 do
+    let ZAP=100000
+  end
+  exec BZ
+  till ^Z_MOVE
+  if V27<2 CALL ZREF
+  CALL YREF
+  let YAP=V4
+  CALL HIGHS
+  exec BY
+  till ^Y_MOVE
+  CALL XREF
+  let XAP=100
+  exec BX
+  till ^X_MOVE
+  CALL LOWS
+  I2=0
+ret
+REM *** X-Achse
+XREF:
+  let XPL=-10000000
+  let XLV=2500
+  let XLA=2500
+  let XLD=5000
+  let XMM=0
+  let XRP=-1000000
+  let XMO=1
+  exec BX
+  till X_LL
+  exec EX
+  let XZP=0
+  let XPL=50
+  let XPH=67500
+ret
+REM *** Y-Achse
+YREF:
+  let YPL=-10000000
+  let YLV=2500
+  let YLA=2500
+  let YLD=5000
+  let YMM=0
+  let YRP=-1000000
+  let YMO=1
+  exec BY
+  till Y_LL
+  exec EY
+  let YZP=0
+  let YPL=250
+  let YPH=33500
+ret
+REM *** Z-Achse hoch
+ZREF:
+  let ZPH=10000000
+  let ZLV=5000
+  let ZLA=15000
+  let ZLD=15000
+  let ZMM=0
+  let ZRP=1000000
+  let ZMO=1
+  let LO=14
+  exec BZ
+  till Z_RL
+  exec EZ
+  let ZZP=192500
+  let ZPL=-250
+  let ZPH=190000
+  let ZAP=100000
+  CALL HIGHS
+  exec BZ
+ret
+REM *** T-Achse auf 0
+TREF:
+  let TPL=-10000000
+  let TPH=10000000
+  let TLV=1000
+  let TLA=1000
+  let TMM=0
+  let TRP=1000000
+  let TMO=1
+  exec BT
+  till T_RL
+  exec ET
+  let TZP=0
+  let TLV=3000
+  let TLA=3000
+  let TRP=-10700
+  let TMO=1
+  exec BT
+  till ^T_MOVE
+  let TZP=0
+  let TPH=9000
+  let TPL=-1500
+ret
+REM VERSION5 22.04.99
+REM Neue T-Achsen-Parametrierung
+
+C
+
