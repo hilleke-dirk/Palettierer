@@ -3,22 +3,24 @@
 'Beim Palettenmagazin gibt es die Funktionen Heben und Senken, die nicht zusammen aktiviert werden dürfen, und den Greifer über Pneumatikzylinder
 'Der Controllersimulator hat als EIngänge leider nicht die späteren Werte des ZIO, deswegen für die Test abweichende Eingänge
 
-dim Simul 'Wenn 1, dann andere Eingänge,  wird später alles auskommentiert
+global Simul 'Wenn 1, dann andere Eingänge,  wird später alles auskommentiert
 Simul = 1
+
+dim OP_FS(4)
+dim IP_FS(4)
+dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Timeout
+global IP_PalOK  'Eingang zum Palettenstreckenentstören
+global IP_MagOben, IP_MagUnten, OP_MagHeben, OP_MagSenken, IP_MagGreifen, OP_MagGreifen, IP_MagOffen, IP_MagNopush, OP_MagPush
+
 
 if (simul) then
 
-dim OP_FS(4)
 OP_FS(0, 41,42,43,44) 
-dim IP_FS(4)
 IP_FS(0, 8,9,10,11)    '******  IP_FS(0, 41,42,43,44)
-dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Timeout
 Error_FS(0, 0,0,0,0)
 
-dim IP_PalOK  'Eingang zum Palettenstreckenentstören
 IP_PalOK = 7   '****** IP_PalOK = 33
 
-dim IP_MagOben, IP_MagUnten, OP_MagHeben, OP_MagSenken, IP_MagGreifen, OP_MagGreifen, IP_MagOffen, IP_MagNopush, OP_MagPush
 IP_MagOben = 16    '******  IP_MagOben = 34 
 IP_MagUnten =  17   '****** IP_MagUnten =  35
 OP_MagHeben = 35
@@ -31,17 +33,12 @@ OP_MagPush = 47
 
 else 'echte Projektwerte 
 
-dim OP_FS(4)
 OP_FS(0, 41,42,43,44)
-dim IP_FS(4)
 IP_FS(0, 41,42,43,44)
-dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Timeout
 Error_FS(0, 0,0,0,0)
 
-dim IP_PalOK  'Eingang zum Palettenstreckenentstören
 IP_PalOK = 33
 
-dim IP_MagOben, IP_MagUnten, OP_MagHeben, OP_MagSenken, IP_MagGreifen, OP_MagGreifen, IP_MagOffen, IP_MagNopush, OP_MagPush
 IP_MagOben = 34 
 IP_MagUnten =  35
 OP_MagHeben = 35
@@ -53,12 +50,13 @@ IP_MagNopush = 47
 OP_MagPush = 47
 end if
 
-dim IP_FS_MASKE, FS_MAX_ZEIT
-IP_FS_MASKE = 0   'mit 1 Eingänge umkehren
-FS_MAX_ZEIT = 30000   'max Zeit fördern der Palette in Millisekunden
+' IP_FS_MASKE, FS_MAX_ZEIT
+CONST IP_FS_MASKE = 0   'mit 1 Eingänge umkehren
+CONST FS_MAX_ZEIT = 30000   'max Zeit fördern der Palette in Millisekunden
 
-dim PalAbTime, PalAbZeit 'Zeitpunkt, ab der FS3 wieder befahren werden darf, Abstand in Sekunden
-PalAbZeit = 60  '60 Sekunden zwischen jeder Palette
+'PalAbTime, PalAbZeit 'Zeitpunkt, ab der FS3 wieder befahren werden darf, Abstand in Sekunden
+CONST PalAbZeit = 60  '60 Sekunden zwischen jeder Palette
+global PalAbTime
 PalAbTime = TIME  'zum Start generell freigeben
 
 dim XStapel(100)
