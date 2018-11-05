@@ -1,0 +1,48 @@
+E:\一单轴运动\一单轴运动\bin\Debug\一单轴运动.exe
+E:\一单轴运动\一单轴运动\bin\Debug\一单轴运动.pdb
+E:\一单轴运动\一单轴运动\bin\Debug\一单轴运动.xml
+E:\一单轴运动\一单轴运动\obj\Debug\ResolveAssemblyReference.cache
+E:\一单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form1.resources
+E:\一单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Resources.resources
+E:\一单轴运动\一单轴运动\obj\Debug\一单轴运动.vbproj.GenerateResource.Cache
+E:\一单轴运动\一单轴运动\obj\Debug\一单轴运动.exe
+E:\一单轴运动\一单轴运动\obj\Debug\一单轴运动.xml
+E:\一单轴运动\一单轴运动\obj\Debug\一单轴运动.pdb
+E:\1单轴运动\一单轴运动\obj\Debug\一单轴运动.exe
+E:\1单轴运动\一单轴运动\obj\Debug\一单轴运动.xml
+E:\1单轴运动\一单轴运动\obj\Debug\一单轴运动.pdb
+E:\1单轴运动\一单轴运动\bin\Debug\一单轴运动.exe
+E:\1单轴运动\一单轴运动\bin\Debug\一单轴运动.pdb
+E:\1单轴运动\一单轴运动\bin\Debug\一单轴运动.xml
+E:\1单轴运动\一单轴运动\obj\Debug\ResolveAssemblyReference.cache
+E:\1单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form1.resources
+E:\1单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Resources.resources
+E:\1单轴运动\一单轴运动\obj\Debug\一单轴运动.vbproj.GenerateResource.Cache
+E:\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.exe
+E:\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.xml
+E:\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.pdb
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.exe
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.xml
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.pdb
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.exe
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.pdb
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.xml
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form1.resources
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Resources.resources
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\VB.net\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form2.resources
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.exe
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.xml
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.pdb
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.exe
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.pdb
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\bin\Debug\一单轴运动.xml
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form1.resources
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Form2.resources
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\WindowsApplication1.Resources.resources
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\例程\例程1.单轴运动\一单轴运动\obj\Debug\一单轴运动.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\Sample1.Single Axis Move\一单轴运动\obj\Debug\一单轴运动.exe
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\Sample1.Single Axis Move\一单轴运动\obj\Debug\一单轴运动.xml
+C:\Users\Administrator\Desktop\Big Plan Z 2017.06.02启\English data\8.PC编程相关\32位例程\VB.NET\Sample1.Single Axis Move\一单轴运动\obj\Debug\一单轴运动.pdb

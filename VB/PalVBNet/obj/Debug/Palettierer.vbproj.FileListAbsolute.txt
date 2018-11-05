@@ -1,0 +1,14 @@
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Palettierer.vbprojAssemblyReference.cache
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\WindowsApplication1.Form1.resources
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\WindowsApplication1.Verbindung.resources
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\WindowsApplication1.Resources.resources
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\WindowsApplication1.Palettierer.resources
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Palettierer.vbproj.GenerateResource.cache
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Palettierer.vbproj.CoreCompileInputs.cache
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\bin\Debug\Pallettierer.exe.config
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\bin\Debug\Pallettierer.exe
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\bin\Debug\Pallettierer.pdb
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\bin\Debug\Pallettierer.xml
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Pallettierer.exe
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Pallettierer.xml
+R:\Verpackung\Palettierer\Paletten-Git\VB\PalVBNet\obj\Debug\Pallettierer.pdb

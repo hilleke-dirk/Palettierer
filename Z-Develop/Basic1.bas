@@ -1,8 +1,3 @@
-'Ausgänge werden mit OP_ benannt und Eingänge mit IP_
-'FS sind die 4 Rollenbahnen der Europalleten, der Ausgang startet den Motor, die Eingang ist ein Kontakt, wenn eine Palette auf der Rollenbahn steht
-'Beim Palettenmagazin gibt es die Funktionen Heben und Senken, die nicht zusammen aktiviert werden dürfen, und den Greifer über Pneumatikzylinder
-'Der Controllersimulator hat als EIngänge leider nicht die späteren Werte des ZIO, deswegen für die Test abweichende Eingänge
-
 global Simul 'Wenn 1, dann andere Eingänge,  wird später alles auskommentiert
 Simul = 1
 
@@ -12,15 +7,11 @@ dim Error_FS(4)      'Fehlerstatus 0 ok, 1 fördert, 2 Fehler aufgetreten z.B. Ti
 global IP_PalOK  'Eingang zum Palettenstreckenentstören
 global IP_MagOben, IP_MagUnten, OP_MagHeben, OP_MagSenken, IP_MagGreifen, OP_MagGreifen, IP_MagOffen, IP_MagNopush, OP_MagPush
 
-
 if (simul) then
-
 OP_FS(0, 41,42,43,44) 
 IP_FS(0, 8,9,10,11)    '******  IP_FS(0, 41,42,43,44)
 Error_FS(0, 0,0,0,0)
-
 IP_PalOK = 7   '****** IP_PalOK = 33
-
 IP_MagOben = 16    '******  IP_MagOben = 34 
 IP_MagUnten =  17   '****** IP_MagUnten =  35
 OP_MagHeben = 35
@@ -30,15 +21,11 @@ IP_MagGreifen = 36
 IP_MagOffen = 37
 IP_MagNopush = 18  '****** IP_MagNopush = 47
 OP_MagPush = 47
-
 else 'echte Projektwerte 
-
 OP_FS(0, 41,42,43,44)
 IP_FS(0, 41,42,43,44)
 Error_FS(0, 0,0,0,0)
-
 IP_PalOK = 33
-
 IP_MagOben = 34 
 IP_MagUnten =  35
 OP_MagHeben = 35
@@ -59,54 +46,9 @@ CONST PalAbZeit = 60  '60 Sekunden zwischen jeder Palette
 global PalAbTime
 PalAbTime = TIME  'zum Start generell freigeben
 
-dim XStapel(100)
-dim YStapel(100)
-dim ZStapel(100)
-dim TStapel(100)
-
-
-'Testspielereien
-'AVSE0,92
-'AVSE1,1
-'AXSE0,270
-'AYSE0,155
-'AZSE0,190
-
-XStapel(0,  1200,1200,1200,1200,1200,930,930,930,775,620,465,310,155,775,620,465,310,155,775,620,465,310,155)
-XStapel(23,1200,1200,1200,1045,1045,1045,890,890,890,735,735,735,735,735,465,465,465,310,310,310,155,155,155)
-XStapel(46,1200,1200,1200,1045,1045,1045,890,890,890,735,735,735,580,580,580,425,425,425,270,270,270,270,270)
-XStapel(60,1200,1200,1200,1200,1200,930,930,930,775,620,465,310,155,775,620,465,310,155,775,620,465,310,155)
-YStapel(0,  0,162,323,484,645,-6,264,534,-6,-6,-6,-6,-6,264,264,264,264,264,534,534,534,534,534)
-YStapel(23,-6,264,534,-6,264,534,-6,264,534,0,162,323,484,645,-6,264,534,-6,264,534,-6,264,534)
-YStapel(46,-6,264,534,-6,264,534,-6,264,534,-6,264,534,-6,264,534,-6,264,534,0,162,323,484,645)
-YStapel(69,0,162,323,484,645,-6,264,534,-6,-6,-6,-6,-6,264,264,264,264,264,534,534,534,534,534)
-ZStapel(0,  1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-ZStapel(23,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2)
-ZStapel(46,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3)
-ZStapel(69,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4)
-TStapel(0,  0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-TStapel(23,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1)
-TStapel(46,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0)
-TStapel(69,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-
-PRINT XStapel(46)
-PRINT XStapel(22)
-
-
-ERRSWITCH = 3
-base (0) '0 select shaft
-
-atype = 1 'pulse stepper or servo
-dpos = 0
-units = 100 'pulse equivalent per pulse mm100
-speed = 200
-accel = 50
-decel = 50
-
 MagInit()
 
 while 1 'cyclic motion
-	
 	if IN(IP_PalOK) = on then  'Palettenentstörtaste gedrückt
 		for i = 0 to 3 step 1
 			if Error_FS(i) = 2 then
@@ -115,20 +57,10 @@ while 1 'cyclic motion
 		next
 		PalAbTime = TIME  'sofortige Freigabe
 	end if
-
 	foerdern(1)
 	foerdern(2)
-
 wend
-
 end
-
-
-'Move the subroutine call
-sub testmove (distance)
-	trace "testmove entered, distance =" distance 'debugging output
-	move (distance)
-end sub
 
 'Förderstreckenvorschub
 sub foerdern (FSNr)
