@@ -2381,7 +2381,7 @@
     'Return:         //错误码
     '*************************************************************/
     'int32 __stdcall ZAux_Direct_Gettable(ZMC_HANDLE handle, int tabstart, int numes, float *pfValue);
-    Declare Function ZAux_Direct_Gettable Lib "zauxdll.dll" (ByVal handle As Integer, ByVal tabstart As Integer, ByVal numes As Integer, ByVal pfValue As Single) As Integer
+    Declare Function ZAux_Direct_Gettable Lib "zauxdll.dll" (ByVal handle As Integer, ByVal tabstart As Integer, ByVal numes As Integer, ByRef pfValue As Single) As Integer
 
     '/*************************************************************
     'Description:    //字符串转为float

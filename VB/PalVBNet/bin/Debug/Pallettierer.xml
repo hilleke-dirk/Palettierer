@@ -22,5 +22,10 @@ Pallettierer
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
 </member>
+<member name="P:WindowsApplication1.My.Resources.Resources.Palette_klein">
+<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

@@ -37,47 +37,49 @@ Public Class Palettierer
 
 #If simul Then
 
-    Dim OP_FS() As Integer = {41, 42, 43, 44}
-    Dim IP_FS() As Integer = {8, 9, 10, 11}    '******  IP_FS(0, 41,42,43,44)
-    Dim IP_PalOK = 7   '****** IP_PalOK = 33
-    Dim IP_MagOben = 16    '******  IP_MagOben = 34 
-    Dim IP_MagUnten = 17   '****** IP_MagUnten =  35
-    Dim OP_MagHeben = 35
-    Dim OP_MagSenken = 36
-    Dim OP_MagGreifen = 37
-    Dim IP_MagGreifen = 36
-    Dim IP_MagOffen = 37
-    Dim IP_MagNopush = 18  '****** IP_MagNopush = 47
-    Dim OP_MagPush = 47
-    Dim IP_KartonDa = 12
-    Dim OP_KartonGreifen1 = 38
-    Dim OP_KartonGreifen2 = 39
-    Dim OP_KartonAnheben = 40
-    Dim IP_KartonAnheben = 14
-    Dim IP_KartonGreiferAuf = 15
-    Dim IP_KartonGreiferZu = 16
+    Public Shared OP_FS() As Integer = {41, 42, 43, 44}
+    Public Shared IP_FS() As Integer = {8, 9, 10, 11}    '******  IP_FS(0, 41,42,43,44)
+    Public Shared IP_PalOK = 7   '****** IP_PalOK = 33
+    Public Shared IP_MagOben = 13    '******  IP_MagOben = 34 
+    Public Shared IP_MagUnten = 17   '****** IP_MagUnten =  35
+    Public Shared OP_MagHeben = 35
+    Public Shared OP_MagSenken = 36
+    Public Shared OP_MagGreifen = 37
+    Public Shared IP_MagGreifen = 36
+    Public Shared IP_MagOffen = 37
+    Public Shared IP_MagNopush = 18  '****** IP_MagNopush = 47
+    Public Shared OP_MagPush = 47
+    Public Shared IP_KartonDa = 12
+    Public Shared OP_KartonGreifen1 = 38
+    Public Shared OP_KartonGreifen2 = 39
+    Public Shared OP_KartonAnheben = 40
+    Public Shared IP_KartonAnheben = 14
+    Public Shared IP_KartonGreiferAuf = 15
+    Public Shared IP_KartonGreiferZu = 16
 
 #Else 'echte Projektwerte 
-    Dim OP_FS() as integer = {41,42,43,44}
-    Dim IP_FS() as integer = {41,42,43,44}
-    Dim IP_PalOK = 33
-    Dim IP_MagOben = 34 
-    Dim IP_MagUnten =  35
-    Dim OP_MagHeben = 35
-    Dim OP_MagSenken = 36
-    Dim OP_MagGreifen = 37
-    Dim IP_MagGreifen = 36 
-    Dim IP_MagOffen = 37
-    Dim IP_MagNopush = 47
-    Dim OP_MagPush = 47
-    Dim IP_KartonDa = 40
-    Dim OP_KartonGreifen1 = 38
-    Dim OP_KartonGreifen2 = 39
-    Dim OP_KartonAnheben = 40
-    Dim IP_KartonAnheben = 45
-    Dim IP_KartonGreiferAuf = 38
-    Dim IP_KartonGreiferZu = 39
+    Public shared OP_FS() as integer = {41,42,43,44}
+    Public shared IP_FS() as integer = {41,42,43,44}
+    Public shared IP_PalOK = 33
+    Public shared IP_MagOben = 34 
+    Public shared IP_MagUnten =  35
+    Public shared OP_MagHeben = 35
+    Public shared OP_MagSenken = 36
+    Public shared OP_MagGreifen = 37
+    Public shared IP_MagGreifen = 36 
+    Public shared IP_MagOffen = 37
+    Public shared IP_MagNopush = 47
+    Public shared OP_MagPush = 47
+    Public shared IP_KartonDa = 40
+    Public shared OP_KartonGreifen1 = 38
+    Public shared OP_KartonGreifen2 = 39
+    Public shared OP_KartonAnheben = 40
+    Public shared IP_KartonAnheben = 45
+    Public shared IP_KartonGreiferAuf = 38
+    Public shared IP_KartonGreiferZu = 39
 #End If
+
+    Dim mask_IP(100) As Integer  'Maske zum Exklusiv Oder für die Eingänge
 
     Dim Prog_namen() As String = {"", "A-4-92", "C-4-72", "D-4-76", "E-3-40", "E-4-54", "E-4-60", "F-4-48", "H-4-48", "I-4-36", "K-4-40"}
     Dim Prog_lagen() As Integer = {0, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4}
@@ -323,13 +325,13 @@ Public Class Palettierer
                 Bewege_absolut(2, postab(2), 40000, 30000, 30000) 'Z Bei Ref war 5000 speed
                 Bewege_absolut(3, postab(3), 2000, 2000, 2000)    'T 3000 bei überprüfung, Position sind T_normal und T_gedreht
 
-                'Dim date1 As Single
-                'ZAux_Direct_GetVariablef(g_handle, "data1", date1)
-                'Debug.WriteLine(date1)
+                Dim date1 As Single
+                ZAux_Direct_GetVariablef(g_handle, "data1", date1)
+                Debug.WriteLine(date1)
 
-                'Dim kong As String
-                'kong = ""
-                'ZAux_DirectCommand(g_handle, "date1=2", kong, 0)
+                Dim kong As String
+                kong = ""
+                ZAux_DirectCommand(g_handle, "data1 = 2", kong, 0)
 
             Else
                 MsgBox("Keine Verbindung", vbOKOnly, "Verbindungs Status")
@@ -423,7 +425,9 @@ Public Class Palettierer
     Private Sub Bt_Stopp_Click(sender As Object, e As EventArgs) Handles Bt_3.Click
         'Lab_Status.Text = Statustexte(0)
         If Bt_3.Text = "manueller Modus" Then
-
+            Dim frm2 As New Manuell
+            frm2.Text = "manuell"
+            Manuell.ShowDialog()
         ElseIf Bt_3.Text = "Stapeln starten" Then
             Debug.WriteLine("Stapeln beginnt")
             Programmpurge()
@@ -470,6 +474,22 @@ Public Class Palettierer
     End Sub
 
     Private Sub Palettierer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mask_IP(IP_FS(0)) = 1
+        mask_IP(IP_FS(1)) = 1
+        mask_IP(IP_FS(2)) = 1
+        mask_IP(IP_FS(3)) = 1
+
+        mask_IP(IP_PalOK) = 0
+        mask_IP(IP_MagOben) = 0
+        mask_IP(IP_MagUnten) = 0
+        mask_IP(IP_MagGreifen) = 0
+        mask_IP(IP_MagOffen) = 0
+        mask_IP(IP_MagNopush) = 0
+        mask_IP(IP_KartonDa) = 0
+        mask_IP(IP_KartonAnheben) = 0
+        mask_IP(IP_KartonGreiferAuf) = 0
+        mask_IP(IP_KartonGreiferZu) = 0
+
         For Each Prognames As String In Prog_namen
             LB_P1.Items.Add(Prognames)
             LB_P2.Items.Add(Prognames)
@@ -659,6 +679,13 @@ Public Class Palettierer
         End If
     End Sub
 
+    Public Function ZMotion_IP(ioNum As Integer)
+        Dim wert
+        ZAux_Direct_GetIn(g_handle, ioNum, Wert)
+        wert = wert Xor mask_IP(ioNum)
+        Return wert
+    End Function
+
     '1 Wert erreicht, 0 Wert nicht erreicht und Wartezeit überschritten
     Function Warte_IP(ioNum As Integer, SollWert As Integer, Prellzeit As Integer, MaxWartezeit As Integer) As Integer
         Dim Wert, Prellen As Integer
@@ -667,7 +694,7 @@ Public Class Palettierer
         stopwatch = Stopwatch.StartNew
         prellwatch = Stopwatch.StartNew
         While (1)
-            ZAux_Direct_GetIn(g_handle, ioNum, Wert)
+            Wert = ZMotion_IP(ioNum)
             Debug.WriteLine("IO " & ioNum & " Soll " & SollWert & " Ist " & Wert & " " & stopwatch.ElapsedMilliseconds)
             If Wert <> SollWert Then
                 If MaxWartezeit > 0 And stopwatch.ElapsedMilliseconds > MaxWartezeit Then
@@ -762,7 +789,7 @@ Public Class Palettierer
                 Kartonda = 0
                 Lab_Status.BeginInvoke(Sub() Lab_Status.Text = "Warte auf Karton")
                 While Status_Stapeln And Kartonda = 0
-                    ZAux_Direct_GetIn(g_handle, IP_KartonDa, Kartonda)
+                    Kartonda = ZMotion_IP(IP_KartonDa)
                     Debug.WriteLine(Kartonda)
                     Threading.Thread.Sleep(500)
                     Kartonda = 1 'XXXX zum Test !!!
